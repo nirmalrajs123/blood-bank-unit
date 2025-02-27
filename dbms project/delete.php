@@ -1,0 +1,34 @@
+<?php
+include 'edit.html';
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "blood_bank";
+
+$rname = $_GET['rsname'];
+$rage = $_GET['rsage'];
+$rcontact_no = $_GET['rscontact_no'];
+$rblood = $_GET['rsblood'];
+$remail = $_GET['rsemail'];
+$rplace = $_GET['rsplace'];
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+$sql = "DELETE  FROM blood_donor1 WHERE name ='".$rname."' && age ='".$rage."'&& contact ='".$rcontact_no."'&& blood ='".$rblood."'&& email ='".$remail."'&& place ='".$rplace."' ";
+$result = $conn->query($sql);
+if($result)
+{
+echo "&nbspDelete Register Sucessfully";
+
+}
+else
+{
+echo "&nbspError in Delete";
+
+}
+mysqli_query($conn,$sql);
+
+  $conn->close();
